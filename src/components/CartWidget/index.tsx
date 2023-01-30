@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, CartImage, CartBudget, CartBudgetText } from './styles';
-const cartImg = require('../../assets/cart.png')
+const cartImg = require('../../assets/images/cart.png')
 
 const CartWidget: React.FC = (props) => {
   return (
