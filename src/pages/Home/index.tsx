@@ -1,10 +1,15 @@
 import React from 'react';
-import { Container, Text } from './styles';
+import { ScrollView, Text } from 'react-native';
+import { Container } from './styles';
+import ShopHeader from '../../components/ShopHeader';
 
 const Home: React.FC = () => {
   return (
     <Container>
-        <Text>I'm home!</Text>
+      <ShopHeader />
+      <ScrollView>
+        <Text>Hi</Text>
+      </ScrollView>
     </Container>
   );
 };
