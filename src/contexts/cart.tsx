@@ -28,6 +28,9 @@ const CartProvider: React.FC = ({ children }) => {
             setTotalUnits(newTotalUnits);
 
             setItems(newItems);
+
+            const jsonValue = JSON.stringify({ totalUnits: newTotalUnits, items: newItems })
+            await AsyncStorage.setItem('@storage_Cart', jsonValue)
         } catch (error){
             console.log(error);
         }
