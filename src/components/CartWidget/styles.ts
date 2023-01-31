@@ -10,7 +10,7 @@ export const CartImage = styled.Image`
 
 export const CartBudget = styled.View`
     background-color: #FFF;
-    border-radius: 20;
+    border-radius: 20px;
     min-width: 20px;
     height: 20px;
     padding: 0 2px;

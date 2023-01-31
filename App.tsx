@@ -12,7 +12,9 @@ export default function App() {
   const [loaded] = useFonts({
     LatoLight: require('./src/assets/fonts/Lato-Light.ttf'),
     LatoRegular: require('./src/assets/fonts/Lato-Regular.ttf'),
-    LatoBold: require('./src/assets/fonts/Lato-Bold.ttf')
+    LatoBold: require('./src/assets/fonts/Lato-Bold.ttf'),
+    NeoRegular: require('./src/assets/fonts/Neo-Sans-Std-Regular.otf'),
+    NeoBold: require('./src/assets/fonts/Neo-Sans-Std-Bold.otf')
   });
 
   if (!loaded) {
