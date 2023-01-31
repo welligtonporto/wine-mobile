@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { CartContext } from "./../../contexts/cart";
 
 import { Container, ContainerInfo, ContainerImage, Image, StimulusImage, ContainerStimulus, Title, OldPrice, Stimulus, ContainerMemberPrice, ContainerPrice, PriceCurrency, PriceCents, MemberLabel, NonMemberPrice } from './styles';
 
 import Button from '../Button';
 
-const Card: React.FC = ({ data: { title, img, stimulusImg, stimulus, oldPrice, memberPrice, nonMemberPrice } }) => {
+const Card: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, oldPrice, memberPrice, nonMemberPrice } }) => {
+  const { addToCart } = useContext(CartContext)
+
+  async function handleAdd(productId){
+    // const jsonValue = JSON.stringify({
+    //   totalUnits: 99,
+    //   items: [
+    //     {
+    //       id: "123",
+    //       units: 10
+    //     },
+    //     {
+    //       id: "456",
+    //       units: 90
+    //     }
+    //   ]
+    // })
+    // await AsyncStorage.setItem('@storage_Key', jsonValue);
+
+    addToCart(productId)
+  }
+
   return (
     <Container>
       <ContainerInfo>
@@ -34,7 +58,7 @@ const Card: React.FC = ({ data: { title, img, stimulusImg, stimulus, oldPrice, m
         <NonMemberPrice>NÃO SÓCIO {nonMemberPrice.formatted}</NonMemberPrice>
       </ContainerInfo>
 
-      <Button onPress={() => console.log("Testing")}>Adicionar</Button>
+      <Button onPress={() => handleAdd(id)}>Adicionar</Button>
     </Container>
   );
 };

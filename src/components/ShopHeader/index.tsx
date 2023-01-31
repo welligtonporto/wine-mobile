@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import { Container, Logo, TestCart } from './styles';
 const logoImg = require('../../assets/images/logo.png')

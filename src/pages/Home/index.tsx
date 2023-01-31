@@ -134,7 +134,7 @@ const Home: React.FC = () => {
       .finally(() => console.log(false));
     }
 
-    getItems();
+    // getItems();
   }, []);
 
   return (
