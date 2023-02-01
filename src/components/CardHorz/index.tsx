@@ -5,10 +5,14 @@ import { CartContext } from "./../../contexts/cart";
 
 import { Container, ContainerInfo, ContainerContent, ContainerImage, Image, StimulusImage, Title, ContainerPrice, PriceCurrency, PriceCents } from './styles';
 
-const CardHorz: React.FC = ({ data: { id, title, img, stimulusImg, units } }) => {
+interface CardHorzProps {
+  data: any;
+}
+
+const CardHorz: React.FC<CardHorzProps> = ({ data: { id, title, img, stimulusImg, units } }) => {
   const { changeUnits } = useContext(CartContext)
   
-  function handleChangeUnits(newUnits){
+  function handleChangeUnits(newUnits: number){
     changeUnits(id, newUnits);
   }
   
@@ -21,7 +25,7 @@ const CardHorz: React.FC = ({ data: { id, title, img, stimulusImg, units } }) =>
         </ContainerImage>
 
         <ContainerContent>
-          <Title>{id} - {title}</Title>
+          <Title>{title}</Title>
 
           <ContainerPrice>
             <PriceCurrency>R$</PriceCurrency> 30,<PriceCents>00</PriceCents>

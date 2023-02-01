@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 
 import { Container, TextAmount, Button, ButtonText } from './styles';
 
-const Amount: React.FC = ({ units, handleChange }) => {
+interface AmountProps {
+  units: number;
+  handleChange(newAmount: number): void;
+}
+
+const Amount: React.FC<AmountProps> = ({ units, handleChange }) => {
   function handleRemove(){
-    let newAmount: any = parseInt(units) - 1;
+    let newAmount: any = units - 1;
     newAmount = newAmount > 1 ? newAmount : 1;
   
     handleChange(newAmount)
   }
 
   function handleAdd(){
-    let newAmount: any = parseInt(units) + 1;
+    let newAmount: any = units + 1;
 
     handleChange(newAmount)
   }

@@ -1,16 +1,27 @@
 import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const CartContext = createContext({});
+interface CartContextProps {
+    totalUnits: number;
+    items: { productId: number, units: number }[];
+    addToCart(productId: number): void;
+    changeUnits(productId: number, newUnits: number): void;
+}
 
-const CartProvider: React.FC = ({ children }) => {
+interface CartProviderProps {
+    children: any;
+}
+
+export const CartContext = createContext<CartContextProps>({} as CartContextProps);
+
+const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const [totalUnits, setTotalUnits] = useState<number>(0);
-    const [items, setItems] = useState<Array>([]);
+    const [items, setItems] = useState<{ productId: number, units: number }[]>([]);
 
-    async function addToCart(productId){
+    async function addToCart(productId: number){
         try {
             const indexToEdit = items.findIndex(item => item.productId === productId);
-            let newItems = JSON.parse(JSON.stringify(items));
+            let newItems: { productId: number, units: number }[] = JSON.parse(JSON.stringify(items));
 
             if (indexToEdit >= 0){
                 newItems[indexToEdit] = {
@@ -36,17 +47,17 @@ const CartProvider: React.FC = ({ children }) => {
         }
     }
 
-    async function changeUnits(productId, newUnits){
+    async function changeUnits(productId: number, newUnits: number){
         try {
             const indexToEdit = items.findIndex(item => item.productId === productId);
-            let newItems = JSON.parse(JSON.stringify(items));
+            let newItems: { productId: number, units: number }[] = JSON.parse(JSON.stringify(items));
 
             newItems[indexToEdit] = {
                 ...newItems[indexToEdit],
-                units: parseInt(newUnits)
+                units: newUnits
             }
 
-            const newTotalUnits = newItems.reduce((partialSum, item) => partialSum + item.units, 0);
+            const newTotalUnits = newItems.reduce((partialSum: number, item) => partialSum + item.units, 0);
             setTotalUnits(newTotalUnits);
 
             setItems(newItems);
@@ -61,7 +72,7 @@ const CartProvider: React.FC = ({ children }) => {
     useEffect(() => {
         async function getCartFromStorage(){
             try {
-                let cartOnStorage = await AsyncStorage.getItem('@storage_Cart')
+                let cartOnStorage: any = await AsyncStorage.getItem('@storage_Cart')
                 cartOnStorage = JSON.parse(cartOnStorage);
     
                 setTotalUnits(cartOnStorage.totalUnits || 0);

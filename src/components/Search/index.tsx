@@ -4,7 +4,11 @@ import { Container, Input, SearchImg } from './styles';
 
 const searchImg = require('../../assets/images/search.png')
 
-const Search: React.FC = ({ handleChange }) => {
+interface SearchProps {
+  handleChange(term: string): void;
+}
+
+const Search: React.FC<SearchProps> = ({ handleChange }) => {
   const [term, setTerm] = useState<string>("");
 
   useEffect(() => {

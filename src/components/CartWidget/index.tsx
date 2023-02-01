@@ -7,13 +7,13 @@ import { Container, CartImage, CartBudget, CartBudgetText } from './styles';
 
 const cartImg = require('../../assets/images/cart.png')
 
-const CartWidget: React.FC = ({ styles }) => {
-  const navigation = useNavigation();
-  const { items, totalUnits } = useContext(CartContext)
+interface CartWidgetProps {
+  styles: any;
+}
 
-  useEffect(() => {
-    console.log(items);
-  }, [items])
+const CartWidget: React.FC<CartWidgetProps> = ({ styles }) => {
+  const navigation = useNavigation();
+  const { totalUnits } = useContext(CartContext)
 
   return (
     <Container style={styles} onPress={() => navigation.navigate('Cart')}>

@@ -8,12 +8,12 @@ import Card from '../../components/Card';
 import Button from '../../components/Button';
 
 const Home: React.FC = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<[]>([]);
   const [page, setPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [requestItems, setRequestItems] = useState<boolean>(true);
 
-  function handleChangeSearchTerm(newTerm){
+  function handleChangeSearchTerm(newTerm: string){
     setSearchTerm(newTerm);
   }
 
@@ -26,16 +26,14 @@ const Home: React.FC = () => {
       try {
         if (!requestItems) return;
 
-        const urlToFetch = searchTerm ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=10&beer_name=${searchTerm}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=10`;
-        let response = await fetch(urlToFetch, {
+        const urlToFetch: string = searchTerm ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=10&beer_name=${searchTerm}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=10`;
+        let response: any = await fetch(urlToFetch, {
           method: "GET"
-        });        
-
-        console.log(urlToFetch);
+        });
 
         response = await response.json();
 
-        const newItems = response.map(item => ({
+        const newItems: [] = response.map((item: any) => ({
           id: item.id,
           img: item.image_url,
           title: item.name,
@@ -86,7 +84,7 @@ const Home: React.FC = () => {
           <InfoText>Exibindo {items.length} produtos</InfoText>
         </>}
         data={items}
-        keyExtractor={item => item.id}
+        keyExtractor={(item: any) => item.id}
         numColumns={2}
         renderItem={({ item }) => {
           return (
@@ -96,7 +94,7 @@ const Home: React.FC = () => {
         ListFooterComponent={
           <ContainerPagination>
             {items.length % 10 === 0 && (
-              <Button onPress={handlePagination} variation="secondary">Mais Produtos</Button>
+              <Button variation="secondary" onPress={handlePagination}>Mais Produtos</Button>
             )}
           </ContainerPagination>
         }

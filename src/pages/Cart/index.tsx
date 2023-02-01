@@ -7,7 +7,7 @@ import { CartContext } from "./../../contexts/cart";
 import { Container, ItemsList } from './styles';
 
 const Cart: React.FC = () => {
-  const [itemsToShow, setItemsToShow] = useState([]);
+  const [itemsToShow, setItemsToShow] = useState<[]>([]);
   const { items } = useContext(CartContext)
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Cart: React.FC = () => {
     async function getItems(){
       try {
         const promise = items.map(async item => {
-          let response = await fetch(`https://api.punkapi.com/v2/beers/${item.productId}`, {
+          let response: any = await fetch(`https://api.punkapi.com/v2/beers/${item.productId}`, {
             method: "GET"
           });
 
@@ -31,7 +31,7 @@ const Cart: React.FC = () => {
           })
         })
 
-        Promise.all(promise).then(completed => setItemsToShow(completed));
+        Promise.all(promise).then((completed: any) => setItemsToShow(completed));
       } catch (error){
         console.log(error);
       }
@@ -46,7 +46,7 @@ const Cart: React.FC = () => {
 
       <ItemsList
           data={itemsToShow}
-          keyExtractor={item => item.id}
+          keyExtractor={(item: any) => item.id}
           renderItem={({ item }) => {
             return (
               <CardHorz data={item} />

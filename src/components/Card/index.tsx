@@ -6,10 +6,14 @@ import { Container, ContainerInfo, ContainerImage, Image, StimulusImage, Contain
 
 import Button from '../Button';
 
-const Card: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, oldPrice, memberPrice, nonMemberPrice } }) => {
+interface CardProps {
+  data: any;
+}
+
+const Card: React.FC<CardProps> = ({ data: { id, title, img, stimulusImg, stimulus, oldPrice, nonMemberPrice } }) => {
   const { addToCart } = useContext(CartContext)
 
-  async function handleAdd(productId){
+  async function handleAdd(productId: number){
     addToCart(productId)
   }
 
@@ -42,7 +46,7 @@ const Card: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, oldPric
         <NonMemberPrice>NÃO SÓCIO {nonMemberPrice.formatted}</NonMemberPrice>
       </ContainerInfo>
 
-      <Button onPress={() => handleAdd(id)}>Adicionar</Button>
+      <Button variation="default" onPress={() => handleAdd(id)}>Adicionar</Button>
     </Container>
   );
 };
