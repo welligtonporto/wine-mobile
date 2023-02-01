@@ -1,133 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CardHorz from '../../components/CardHorz';
 import ShopHeader from '../../components/ShopHeader';
+
+import { CartContext } from "./../../contexts/cart";
 
 import { Container, ItemsList } from './styles';
 
 const Cart: React.FC = () => {
-  const [items, setItems] = useState([
-    {
-      id: 123,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
+  const [itemsToShow, setItemsToShow] = useState([]);
+  const { items } = useContext(CartContext)
+
+  useEffect(() => {
+    if (!items?.length) return;
+
+    async function getItems(){
+      try {
+        const promise = items.map(async item => {
+          let response = await fetch(`https://api.punkapi.com/v2/beers/${item.productId}`, {
+            method: "GET"
+          });
+
+          response = await response.json();
+
+          return ({
+            id: response[0].id,
+            img: response[0].image_url,
+            title: response[0].name,
+            stimulusImg: require('../../assets/images/example-products/black.png'),
+            units: item.units
+          })
+        })
+
+        Promise.all(promise).then(completed => setItemsToShow(completed));
+      } catch (error){
+        console.log(error);
       }
-    },
-    {
-      id: 1234,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 12345,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 1237,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 12348,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 123459,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-  ]);
+    }
+
+    getItems();
+  }, [items]);
 
   return (
     <Container>
       <ShopHeader variation="canBack" />
 
       <ItemsList
-          data={items}
+          data={itemsToShow}
           keyExtractor={item => item.id}
           renderItem={({ item }) => {
             return (

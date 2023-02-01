@@ -64,8 +64,8 @@ const CartProvider: React.FC = ({ children }) => {
                 let cartOnStorage = await AsyncStorage.getItem('@storage_Cart')
                 cartOnStorage = JSON.parse(cartOnStorage);
     
-                setTotalUnits(cartOnStorage.totalUnits);
-                setItems(cartOnStorage.items);
+                setTotalUnits(cartOnStorage.totalUnits || 0);
+                setItems(cartOnStorage.items || []);
             } catch (error){
                 console.log(error);
             }

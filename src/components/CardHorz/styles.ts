@@ -33,6 +33,7 @@ export const StimulusImage = styled.Image`
 `;
 
 export const Image = styled.Image`
+    width: 110px;
     height: 110px;
     resize-mode: contain;
 `;

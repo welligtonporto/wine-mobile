@@ -32,7 +32,7 @@ const Card: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, oldPric
     <Container>
       <ContainerInfo>
         <ContainerImage>
-          <Image source={img} />
+          <Image source={{ uri: img }} />
           <StimulusImage source={stimulusImg} />
         </ContainerImage>
 

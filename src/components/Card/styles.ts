@@ -30,7 +30,9 @@ export const StimulusImage = styled.Image`
 `;
 
 export const Image = styled.Image`
-    
+    width: 100%;
+    height: 180px;
+    resize-mode: contain;
 `;
 
 export const Title = styled.Text`

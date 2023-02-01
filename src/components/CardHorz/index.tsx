@@ -5,7 +5,7 @@ import { CartContext } from "./../../contexts/cart";
 
 import { Container, ContainerInfo, ContainerContent, ContainerImage, Image, StimulusImage, Title, ContainerPrice, PriceCurrency, PriceCents } from './styles';
 
-const CardHorz: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, oldPrice, memberPrice, nonMemberPrice } }) => {
+const CardHorz: React.FC = ({ data: { id, title, img, stimulusImg, units } }) => {
   const { changeUnits } = useContext(CartContext)
   
   function handleChangeUnits(newUnits){
@@ -16,7 +16,7 @@ const CardHorz: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, old
     <Container>
       <ContainerInfo>
         <ContainerImage>
-          <Image source={img} />
+          <Image source={{ uri: img }} />
           <StimulusImage source={stimulusImg} />
         </ContainerImage>
 
@@ -27,7 +27,7 @@ const CardHorz: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, old
             <PriceCurrency>R$</PriceCurrency> 30,<PriceCents>00</PriceCents>
           </ContainerPrice>
 
-          <Amount handleChange={handleChangeUnits} />
+          <Amount units={units} handleChange={handleChangeUnits} />
         </ContainerContent>
       </ContainerInfo>
     </Container>

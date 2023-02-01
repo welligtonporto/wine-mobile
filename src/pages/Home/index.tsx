@@ -7,133 +7,42 @@ import Search from '../../components/Search';
 import Card from '../../components/Card';
 
 const Home: React.FC = () => {
-  const [items, setItems] = useState([
-    {
-      id: 123,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 1234,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 12345,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 1237,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 12348,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-    {
-      id: 123459,
-      img: require('../../assets/images/example-products/tinto.png'),
-      title: "Toro Loco D.O.P. Utiel-Requena Tempranillo 2017",
-      stimulus: "15% OFF",
-      stimulusImg: require('../../assets/images/example-products/black.png'),
-      oldPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      },
-      memberPrice: {
-        raw: 30,
-        formatted: "R$ 30,00"
-      },
-      nonMemberPrice: {
-        raw: 37.40,
-        formatted: "R$ 37,40"
-      }
-    },
-  ]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     async function getItems(){
-      fetch('https://wine-back-test.herokuapp.com/products?page=1&limit=10')
-      .then((response) => response)
-      .then((json) => console.log(json))
-      .catch((error) => console.error(error))
-      .finally(() => console.log(false));
+      try {
+        let response = await fetch('https://api.punkapi.com/v2/beers?page=1&per_page=10', {
+          method: "GET"
+        });
+        
+
+        response = await response.json();
+        return setItems(response.map(item => ({
+            id: item.id,
+            img: item.image_url,
+            title: item.name,
+            stimulus: "15% OFF",
+            stimulusImg: require('../../assets/images/example-products/black.png'),
+            oldPrice: {
+              raw: 37.40,
+              formatted: "R$ 37,40"
+            },
+            memberPrice: {
+              raw: 30,
+              formatted: "R$ 30,00"
+            },
+            nonMemberPrice: {
+              raw: 37.40,
+              formatted: "R$ 37,40"
+            }
+        })))
+      } catch (error){
+        console.log(error);
+      }
     }
 
-    // getItems();
+    getItems();
   }, []);
 
   return (
