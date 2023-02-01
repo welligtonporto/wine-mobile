@@ -1,4 +1,5 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { CartContext } from "./../../contexts/cart";
 
@@ -6,11 +7,12 @@ import { Container, CartImage, CartBudget, CartBudgetText } from './styles';
 
 const cartImg = require('../../assets/images/cart.png')
 
-const CartWidget: React.FC = (props) => {
+const CartWidget: React.FC = ({ styles }) => {
+  const navigation = useNavigation();
   const { totalUnits } = useContext(CartContext)
 
   return (
-    <Container style={props.styles}>
+    <Container style={styles} onPress={() => navigation.navigate('Cart')}>
       <CartImage source={cartImg} />
 
       <CartBudget>

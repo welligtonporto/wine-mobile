@@ -7,6 +7,7 @@ import CartProvider from './src/contexts/cart';
 import { useFonts } from 'expo-font';
 
 import Home from './src/pages/Home';
+import Cart from './src/pages/Cart';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,9 +33,10 @@ export default function App() {
           screenOptions={{
             headerShown: false
           }}
-          initialRouteName="Home"
+          initialRouteName="Cart"
         >
           <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Cart" component={Cart} />
         </Stack.Navigator>
       </CartProvider>
     </NavigationContainer>

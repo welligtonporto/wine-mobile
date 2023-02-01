@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import CardHorz from '../../components/CardHorz';
 
-import { Container, ItemsList, InfoText } from './styles';
+import { ItemsList } from './styles';
 
-import ShopHeader from '../../components/ShopHeader';
-import Search from '../../components/Search';
-import Card from '../../components/Card';
-
-const Home: React.FC = () => {
+const Cart: React.FC = () => {
   const [items, setItems] = useState([
     {
       id: 123,
@@ -124,57 +121,17 @@ const Home: React.FC = () => {
     },
   ]);
 
-  useEffect(() => {
-    async function getItems(){
-      fetch('https://wine-back-test.herokuapp.com/products?page=1&limit=10')
-      .then((response) => response)
-      .then((json) => console.log(json))
-      .catch((error) => console.error(error))
-      .finally(() => console.log(false));
-    }
-
-    // getItems();
-  }, []);
-
   return (
-    <Container>
-      <ShopHeader />
-      
-      {/* <ScrollContainer>
-        <Search />
-
-        <InfoText>{items.length} produtos encontrados</InfoText>
-        
-        <FlatList
-          data={items}
-          keyExtractor={item => item.id}
-          numColumns={2}
-          renderItem={({ item }) => {
-            return (
-              <Card data={item} />
-            );
-          }}
-        />
-      </ScrollContainer> */}
-
-      <ItemsList
-        ListHeaderComponent={
-        <>
-          <Search />
-
-          <InfoText>{items.length} produtos encontrados</InfoText>
-        </>}
+    <ItemsList
         data={items}
         keyExtractor={item => item.id}
-        numColumns={2}
         renderItem={({ item }) => {
           return (
-            <Card data={item} />
+            <CardHorz data={item} />
           );
         }}
-      />
-    </Container>
+    />
   );
 };
 
-export default Home;
+export default Cart;
