@@ -3,7 +3,11 @@ import { TouchableOpacityProps } from 'react-native';
 
 import { Container, ButtonText } from './styles';
 
-const Button: React.FC<TouchableOpacityProps> = ({ children, ...rest }) => (
+interface ButtonProps extends TouchableOpacityProps {
+    variation: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, ...rest }) => (
     <Container {...rest}>
         <ButtonText>{children}</ButtonText>
     </Container>
