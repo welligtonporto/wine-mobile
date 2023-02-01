@@ -10,21 +10,6 @@ const Card: React.FC = ({ data: { id, title, img, stimulusImg, stimulus, oldPric
   const { addToCart } = useContext(CartContext)
 
   async function handleAdd(productId){
-    // const jsonValue = JSON.stringify({
-    //   totalUnits: 99,
-    //   items: [
-    //     {
-    //       id: "123",
-    //       units: 10
-    //     },
-    //     {
-    //       id: "456",
-    //       units: 90
-    //     }
-    //   ]
-    // })
-    // await AsyncStorage.setItem('@storage_Key', jsonValue);
-
     addToCart(productId)
   }
 

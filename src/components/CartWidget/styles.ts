@@ -21,7 +21,6 @@ export const CartBudget = styled.View`
     bottom: 0;
 `;
 
-// color: #00B495;
 export const CartBudgetText = styled.Text`
     color: #00B495;
     font-size: 12px;
