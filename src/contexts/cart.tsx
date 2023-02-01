@@ -36,6 +36,28 @@ const CartProvider: React.FC = ({ children }) => {
         }
     }
 
+    async function changeUnits(productId, newUnits){
+        try {
+            const indexToEdit = items.findIndex(item => item.productId === productId);
+            let newItems = JSON.parse(JSON.stringify(items));
+
+            newItems[indexToEdit] = {
+                ...newItems[indexToEdit],
+                units: parseInt(newUnits)
+            }
+
+            const newTotalUnits = newItems.reduce((partialSum, item) => partialSum + item.units, 0);
+            setTotalUnits(newTotalUnits);
+
+            setItems(newItems);
+
+            const jsonValue = JSON.stringify({ totalUnits: newTotalUnits, items: newItems })
+            await AsyncStorage.setItem('@storage_Cart', jsonValue)
+        } catch (error){
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         async function getCartFromStorage(){
             try {
@@ -53,7 +75,7 @@ const CartProvider: React.FC = ({ children }) => {
     }, []);
 
     return (
-        <CartContext.Provider value={{ totalUnits, items, addToCart }}>
+        <CartContext.Provider value={{ totalUnits, items, addToCart, changeUnits }}>
             {children}
         </CartContext.Provider>
     )

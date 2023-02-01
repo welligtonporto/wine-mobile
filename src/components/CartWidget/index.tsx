@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { CartContext } from "./../../contexts/cart";
@@ -9,7 +9,11 @@ const cartImg = require('../../assets/images/cart.png')
 
 const CartWidget: React.FC = ({ styles }) => {
   const navigation = useNavigation();
-  const { totalUnits } = useContext(CartContext)
+  const { items, totalUnits } = useContext(CartContext)
+
+  useEffect(() => {
+    console.log(items);
+  }, [items])
 
   return (
     <Container style={styles} onPress={() => navigation.navigate('Cart')}>

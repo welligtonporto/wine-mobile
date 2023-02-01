@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 
-import { Container, Input, Button, ButtonText } from './styles';
+import { Container, TextAmount, Button, ButtonText } from './styles';
 
-const searchImg = require('../../assets/images/search.png')
-
-const Amount: React.FC = () => {
+const Amount: React.FC = ({ handleChange }) => {
   const [amount, setAmount] = useState<string>("1");
 
   function handleRemove(){
-    let newAmount = parseInt(amount) - 1;
+    let newAmount: any = parseInt(amount) - 1;
     newAmount = newAmount > 1 ? newAmount : 1;
+    newAmount = String(newAmount)
   
-    setAmount(String(newAmount))
+    setAmount(newAmount)
+    handleChange(newAmount)
   }
 
   function handleAdd(){
-    let newAmount = parseInt(amount) + 1;
+    let newAmount: any = parseInt(amount) + 1;
+    newAmount = String(newAmount)
 
-    setAmount(String(newAmount))
+    setAmount(newAmount)
+    handleChange(newAmount)
   }
 
   return (
@@ -26,11 +28,7 @@ const Amount: React.FC = () => {
         <ButtonText>-</ButtonText>
       </Button>
 
-      <Input
-        keyboardType="number-pad"
-        onChangeText={setAmount}
-        value={amount}
-      />
+      <TextAmount>{amount}</TextAmount>
 
       <Button onPress={handleAdd}>
         <ButtonText>+</ButtonText>

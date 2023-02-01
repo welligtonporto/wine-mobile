@@ -33,7 +33,7 @@ export default function App() {
           screenOptions={{
             headerShown: false
           }}
-          initialRouteName="Cart"
+          initialRouteName="Home"
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Cart" component={Cart} />

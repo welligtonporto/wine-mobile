@@ -21,4 +21,6 @@ export const Logo = styled.Image`
     resize-mode: contain;
 `;
 
+export const BackButton = styled.TouchableOpacity``;
 
+export const BackImage = styled.Image``;

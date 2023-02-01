@@ -1,5 +1,10 @@
 import styled from 'styled-components/native';
 
+export const Container = styled.View`
+  flex: 1;
+  background-color: #F5F5F5;
+`;
+
 export const ItemsList = styled.FlatList`
   padding: 32px 0;
 `;

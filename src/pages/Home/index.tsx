@@ -138,7 +138,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <ShopHeader />
+      <ShopHeader variation="default" />
       
       {/* <ScrollContainer>
         <Search />

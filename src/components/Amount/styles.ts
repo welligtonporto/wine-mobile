@@ -10,13 +10,15 @@ export const Container = styled.View`
     width: 100px;
 `;
 
-export const Input = styled.TextInput`
+export const TextAmount = styled.Text`
     fontFamily: 'LatoRegular';
     font-size: 14px;
     color: #555555;
     width: 40px;
-    height: 100%;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
+
 `;
 
 export const Button = styled.TouchableOpacity`

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import CardHorz from '../../components/CardHorz';
+import ShopHeader from '../../components/ShopHeader';
 
-import { ItemsList } from './styles';
+import { Container, ItemsList } from './styles';
 
 const Cart: React.FC = () => {
   const [items, setItems] = useState([
@@ -122,15 +123,19 @@ const Cart: React.FC = () => {
   ]);
 
   return (
-    <ItemsList
-        data={items}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => {
-          return (
-            <CardHorz data={item} />
-          );
-        }}
-    />
+    <Container>
+      <ShopHeader variation="canBack" />
+
+      <ItemsList
+          data={items}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => {
+            return (
+              <CardHorz data={item} />
+            );
+          }}
+      />
+    </Container>
   );
 };
 
