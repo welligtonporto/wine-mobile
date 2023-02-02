@@ -10,8 +10,8 @@ interface AmountProps {
 const Amount: React.FC<AmountProps> = ({ units, handleChange }) => {
   function handleRemove(){
     let newAmount: any = units - 1;
-    newAmount = newAmount > 1 ? newAmount : 1;
-  
+    newAmount = newAmount >= 0 ? newAmount : 0;
+    
     handleChange(newAmount)
   }
 

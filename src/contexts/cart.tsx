@@ -51,10 +51,14 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         try {
             const indexToEdit = items.findIndex(item => item.productId === productId);
             let newItems: { productId: number, units: number }[] = JSON.parse(JSON.stringify(items));
-
-            newItems[indexToEdit] = {
-                ...newItems[indexToEdit],
-                units: newUnits
+            
+            if (newUnits > 0){
+                newItems[indexToEdit] = {
+                    ...newItems[indexToEdit],
+                    units: newUnits
+                }
+            } else {
+                newItems = newItems.filter((_, index) => index !== indexToEdit);
             }
 
             const newTotalUnits = newItems.reduce((partialSum: number, item) => partialSum + item.units, 0);

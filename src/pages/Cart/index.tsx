@@ -11,8 +11,6 @@ const Cart: React.FC = () => {
   const { items } = useContext(CartContext)
 
   useEffect(() => {
-    if (!items?.length) return;
-
     async function getItems(){
       try {
         const promise = items.map(async item => {
