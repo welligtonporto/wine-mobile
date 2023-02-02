@@ -4,9 +4,8 @@ The React Native's application for Wine.
 
 ## Getting started
 
-After cloning this repository follow the instructions to get started:
-
  ```
+git clone git@github.com:welligtonporto/wine-mobile.git
 cd wine-mobile
 npm install
 npm start
