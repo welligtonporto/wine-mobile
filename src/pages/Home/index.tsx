@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, ItemsList, InfoText, ContainerPagination } from './styles';
+import { Container, ItemsList, InfoText, ContainerPagination, Loader } from './styles';
 
 import ShopHeader from '../../components/ShopHeader';
 import Search from '../../components/Search';
@@ -12,6 +12,8 @@ const Home: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [requestItems, setRequestItems] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isPagining, setIsPagining] = useState<boolean>(false);
 
   function handleChangeSearchTerm(newTerm: string){
     setSearchTerm(newTerm);
@@ -25,6 +27,8 @@ const Home: React.FC = () => {
     async function getItems(){
       try {
         if (!requestItems) return;
+
+        (page === 1) ? setIsLoading(true) : setIsPagining(true)
 
         const urlToFetch: string = searchTerm ? `https://api.punkapi.com/v2/beers?page=${page}&per_page=10&beer_name=${searchTerm}` : `https://api.punkapi.com/v2/beers?page=${page}&per_page=10`;
         let response: any = await fetch(urlToFetch, {
@@ -55,6 +59,8 @@ const Home: React.FC = () => {
 
         setItems(page === 1 ? newItems : [...items, ...newItems]);
         setRequestItems(false);
+        setIsLoading(false);
+        setIsPagining(false);
       } catch (error){
         console.log(error);
       }
@@ -80,20 +86,36 @@ const Home: React.FC = () => {
         ListHeaderComponent={
         <>
           <Search handleChange={handleChangeSearchTerm} />
+          
+          {!isLoading && items.length > 0 && (
+            <InfoText>Exibindo {items.length} produtos</InfoText>
+          )}
 
-          <InfoText>Exibindo {items.length} produtos</InfoText>
+          {!isLoading && items.length === 0 && (
+            <InfoText>Nenhum produto encontrado para "{searchTerm}"</InfoText>
+          )}
+
+          {isLoading && (
+            <Loader size="large" />
+          )}
         </>}
         data={items}
         keyExtractor={(item: any) => item.id}
         numColumns={2}
         renderItem={({ item }) => {
+          if (isLoading) return null;
+
           return (
             <Card data={item} />
           );
         }}
         ListFooterComponent={
           <ContainerPagination>
-            {items.length % 10 === 0 && (
+            {isPagining && (
+              <Loader size="large" />
+            )}
+
+            {items.length > 0 && items.length % 10 === 0 && !isLoading && !isPagining && (
               <Button variation="secondary" onPress={handlePagination}>Mais Produtos</Button>
             )}
           </ContainerPagination>

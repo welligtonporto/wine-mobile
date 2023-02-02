@@ -25,3 +25,5 @@ export const ContainerPagination = styled.View`
   margin-bottom: 40px;
   align-items: center;
 `;
+
+export const Loader = styled.ActivityIndicator``;

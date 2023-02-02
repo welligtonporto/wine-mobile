@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { ToastAndroid } from 'react-native';
+
 interface CartContextProps {
     totalUnits: number;
     items: { productId: number, units: number }[];
@@ -39,6 +41,7 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             setTotalUnits(newTotalUnits);
 
             setItems(newItems);
+            ToastAndroid.show('Produto adicionado no carrinho!', ToastAndroid.SHORT);
 
             const jsonValue = JSON.stringify({ totalUnits: newTotalUnits, items: newItems })
             await AsyncStorage.setItem('@storage_Cart', jsonValue)
@@ -65,6 +68,7 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             setTotalUnits(newTotalUnits);
 
             setItems(newItems);
+            ToastAndroid.show('Quantidade alterada!', ToastAndroid.SHORT);
 
             const jsonValue = JSON.stringify({ totalUnits: newTotalUnits, items: newItems })
             await AsyncStorage.setItem('@storage_Cart', jsonValue)

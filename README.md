@@ -11,3 +11,5 @@ cd wine-mobile
 npm install
 npm start
 ```
+
+The app was developed in Windows, then I recommend opening the Android Emulator `pressing "A"`.
