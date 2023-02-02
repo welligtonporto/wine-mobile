@@ -2,7 +2,7 @@
 
 The React Native's application for Wine.
 
-![](https://raw.githubusercontent.com/welligtonporto/wine-mobile/main/assets/app-working.gif)
+![](https://raw.githubusercontent.com/welligtonporto/wine-mobile/main/assets/app-running.gif)
 
 ## Getting started
 
