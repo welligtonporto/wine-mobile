@@ -11,9 +11,11 @@ npm install
 npm start
 ```
 
+Great! Now you can open the application in your favorite emulator following the instructions that you see on your console.
+
 ## Deploy
 
-You can run the application running at your device by following these steps:
+You can also run the application running at your device by following these steps:
 
 - Download the app `Expo Go` on your device: [https://expo.dev/client](https://expo.dev/client)
 - Access [https://expo.dev/@welligtonporto/wine-mobile](https://expo.dev/@welligtonporto/wine-mobile) to run the application on your device.
