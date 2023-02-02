@@ -12,7 +12,6 @@ export const Container = styled.TouchableOpacity`
     shadow-opacity: 0.8;
     elevation: 2;
     border-radius: 4px;
-    margin-bottom: 8px;
     background: ${props => props.variation === "secondary" ? "#C81A78" : "#7EBC43"};
 `;
 

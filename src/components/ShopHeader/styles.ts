@@ -15,6 +15,7 @@ export const Container = styled.View`
     shadow-offset: {width: 0, height: 2};
     shadow-opacity: 0.8;
     elevation: 2;
+    z-index: 1;
 `;
 
 export const Logo = styled.Image`

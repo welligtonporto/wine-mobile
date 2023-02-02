@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { CartContext } from "./../../contexts/cart";
 
-import { Container, ContainerInfo, ContainerImage, Image, StimulusImage, ContainerStimulus, Title, OldPrice, Stimulus, ContainerMemberPrice, ContainerPrice, PriceCurrency, PriceCents, MemberLabel, NonMemberPrice } from './styles';
+import { Container, ContainerTexts, ContainerInfo, ContainerImage, Image, StimulusImage, ContainerStimulus, Title, OldPrice, Stimulus, ContainerMemberPrice, ContainerPrice, PriceCurrency, PriceCents, MemberLabel, NonMemberPrice } from './styles';
 
 import Button from '../Button';
 
@@ -25,25 +25,27 @@ const Card: React.FC<CardProps> = ({ data: { id, title, img, stimulusImg, stimul
           <StimulusImage source={stimulusImg} />
         </ContainerImage>
 
-        <Title>{title}</Title>
+        <ContainerTexts>
+          <Title>{title}</Title>
 
-        <ContainerStimulus>
-          <OldPrice>{oldPrice.formatted}</OldPrice>
-          <Stimulus>{stimulus}</Stimulus>
-        </ContainerStimulus>
+          <ContainerStimulus>
+            <OldPrice>{oldPrice.formatted}</OldPrice>
+            <Stimulus>{stimulus}</Stimulus>
+          </ContainerStimulus>
 
-        <ContainerMemberPrice>
-          <MemberLabel>
-            SÓCIO{'\n'}
-            WINE
-          </MemberLabel>
+          <ContainerMemberPrice>
+            <MemberLabel>
+              SÓCIO{'\n'}
+              WINE
+            </MemberLabel>
 
-          <ContainerPrice>
-            <PriceCurrency>R$</PriceCurrency> 30,<PriceCents>00</PriceCents>
-          </ContainerPrice>
-        </ContainerMemberPrice>
+            <ContainerPrice>
+              <PriceCurrency>R$</PriceCurrency> 30,<PriceCents>00</PriceCents>
+            </ContainerPrice>
+          </ContainerMemberPrice>
         
-        <NonMemberPrice>NÃO SÓCIO {nonMemberPrice.formatted}</NonMemberPrice>
+          <NonMemberPrice>NÃO SÓCIO {nonMemberPrice.formatted}</NonMemberPrice>
+        </ContainerTexts>
       </ContainerInfo>
 
       <Button variation="default" onPress={() => handleAdd(id)}>Adicionar</Button>

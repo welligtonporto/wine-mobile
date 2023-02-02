@@ -1,8 +1,13 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
-    padding: 12px 16px;
+    margin: 12px 16px;
     flex: 0.5;
+    position: relative;
+`;
+
+export const ContainerAlign = styled.View`
+    // background-color: #F00;
 `;
 
 export const ContainerInfo = styled.View`
@@ -15,6 +20,9 @@ export const ContainerInfo = styled.View`
     elevation: 2;
     border-radius: 4px;
     margin-bottom: 8px;
+    align-self: stretch;
+    flex-grow: 1;
+    justify-content: space-between;
 `;
 
 export const ContainerImage = styled.View`
@@ -74,6 +82,9 @@ export const ContainerMemberPrice = styled.View`
     justify-content: center;
     align-items: center;
     margin-bottom: 8px;
+`;
+
+export const ContainerTexts = styled.View`
 `;
 
 export const MemberLabel = styled.Text`
