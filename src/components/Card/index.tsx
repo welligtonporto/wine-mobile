@@ -40,7 +40,7 @@ const Card: React.FC<CardProps> = ({ data: { id, title, img, stimulusImg, stimul
             </MemberLabel>
 
             <ContainerPrice>
-              <PriceCurrency>R$</PriceCurrency> 30,<PriceCents>00</PriceCents>
+              <PriceCurrency>R$</PriceCurrency> 39,<PriceCents>90</PriceCents>
             </ContainerPrice>
           </ContainerMemberPrice>
         

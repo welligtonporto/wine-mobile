@@ -6,15 +6,15 @@ export const Container = styled.View`
     position: relative;
 `;
 
-export const ContainerAlign = styled.View`
-    // background-color: #F00;
-`;
+export const ContainerAlign = styled.View``;
 
 export const ContainerInfo = styled.View`
     padding: 16px 8px 8px;
     background-color: #FFF;
+    border-width: 0;
     border-color: #ddd;
     shadow-color: #000;
+    border-bottom-width: 0;
     shadow-offset: {width: 0, height: 2};
     shadow-opacity: 0.8;
     elevation: 2;

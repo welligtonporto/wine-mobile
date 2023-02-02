@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 import CartProvider from './src/contexts/cart';
 
@@ -27,17 +28,19 @@ export default function App() {
   return (
     <NavigationContainer>
       <CartProvider>
-        <StatusBar style="auto" />
-        
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false
-          }}
-          initialRouteName="Home"
-        >
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Cart" component={Cart} />
-        </Stack.Navigator>
+        <RootSiblingParent>
+          <StatusBar style="auto" />
+          
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false
+            }}
+            initialRouteName="Home"
+          >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Cart" component={Cart} />
+          </Stack.Navigator>
+        </RootSiblingParent>
       </CartProvider>
     </NavigationContainer>
   );

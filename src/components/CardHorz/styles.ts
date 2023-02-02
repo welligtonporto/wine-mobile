@@ -7,7 +7,9 @@ export const Container = styled.View`
 export const ContainerInfo = styled.View`
     padding: 16px 8px 8px;
     background-color: #FFF;
+    border-width: 0;
     border-color: #ddd;
+    border-bottom-width: 0;
     shadow-color: #000;
     shadow-offset: {width: 0, height: 2};
     shadow-opacity: 0.8;
