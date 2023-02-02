@@ -70,9 +70,16 @@ const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             setTotalUnits(newTotalUnits);
 
             setItems(newItems);
-            Toast.show('Quantidade alterada!', {
-                duration: Toast.durations.SHORT,
-            });
+
+            if (newUnits > 0) {
+                Toast.show('Quantidade alterada!', {
+                    duration: Toast.durations.SHORT,
+                });
+            } else {
+                Toast.show('Produto removido!', {
+                    duration: Toast.durations.SHORT,
+                });
+            }            
 
             const jsonValue = JSON.stringify({ totalUnits: newTotalUnits, items: newItems })
             await AsyncStorage.setItem('@storage_Cart', jsonValue)

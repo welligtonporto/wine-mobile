@@ -28,7 +28,7 @@ const CardHorz: React.FC<CardHorzProps> = ({ data: { id, title, img, stimulusImg
           <Title>{title}</Title>
 
           <ContainerPrice>
-            <PriceCurrency>R$</PriceCurrency> 30,<PriceCents>00</PriceCents>
+            <PriceCurrency>R$</PriceCurrency> 39,<PriceCents>90</PriceCents>
           </ContainerPrice>
 
           <Amount units={units} handleChange={handleChangeUnits} />

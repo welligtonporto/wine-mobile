@@ -2,6 +2,8 @@
 
 The React Native's application for Wine.
 
+![](https://github.com/Your_Repository_Name/Your_GIF_Name.gif)
+
 ## Getting started
 
  ```
